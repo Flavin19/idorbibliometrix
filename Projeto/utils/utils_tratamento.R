@@ -5,10 +5,25 @@
 pacotes <- c("tidyverse", "bib2df", "janitor", "rscopus", "biblionetwork","RColorBrewer",
 "tidygraph", "ggraph", "ggnewscale",'stringi',"data.table",'openxlsx','ggwordcloud',
  "bibliometrix", "ggpubr","broom","viridis","treemapify","ggrepel",'igraph',
-'ggh4x','stringdist','maps')
+'ggh4x','stringdist','maps','devtools')
 
 githubpacotes <- c("thomasp85/scico","agoutsmedt/networkflow","ParkerICI/vite",
                    'hrbrmstr/pluralize')
+
+for(i in pacotes){
+  
+  if(!i %in% rownames(installed.packages())){
+utils::install.packages(i, dependencies = TRUE, quiet = TRUE,
+                      ask = FALSE,character.only = TRUE)
+
+  }}
+
+for(i in githubpacotes){
+  
+  if(! gsub(".*/", "",i) %in% rownames(installed.packages())){
+    devtools::install_github(i)
+    
+  }}
 
 for(i in c(pacotes,gsub(".*/", "",githubpacotes))){
   library(i, character.only = TRUE)
